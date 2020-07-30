@@ -1,0 +1,68 @@
+apiVersion: v1
+baseDomain: bluepowertechnology.com
+compute:
+- hyperthreading: Enabled
+  name: worker
+  replicas: 0
+controlPlane:
+  hyperthreading: Enabled
+  name: master
+  replicas: 3
+metadata:
+  name: ocp
+networking:
+  clusterNetwork:
+  - cidr: 10.128.0.0/14
+    hostPrefix: 23
+  networkType: OpenShiftSDN
+  serviceNetwork:
+  - 172.30.0.0/16
+platform:
+  none: {}
+fips: false
+pullSecret: '{"auths": {"bastion.ocp.bluepowertechnology.com:5000": {"auth": "cm9vdDpwYXNzdzByZA==","email": "zhouya@sg.ibm.com"}}}'
+sshKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC0rbWFtiLjgsreTs+dWrjkDC1DUDSjZOuudPE4uTHANG5RaZbnCq7hQRTxWK/aZoiFgWetQuCcmClSbjnhHgeGRGB/bmxE8r+bBYII7LUNjhiw/cIMoL/L8rGmTptZXpa3pxurHk9TpcN4vOIBoSxVcSm7Dzvd3p1rwap1ZNQJtVcRFO6YkN7wXDa0kvINVNLFSdAwpqfshMON53K3Ght8oosU/eBx6GLLhyPLXoCpoJ0H31kNaHFRITfT84n8UfPTULFnj+vaKFjJfU4HUAMxS7AbdKEwOuARZnGiPF0uuxyNWKMtgBIfnxsCGqyIqKN/4Lzqsv8A7OaNuQ3i2Uqe8tfpEMAdPiABvGNgGkk4YRRQwYYZuFC5MEuCL+UpRx3Nx+Hi8j8BSbix2XJKKXWWPRMFjy08CEFHpMeXjSQdxaUGdBP8SdciPw2YeMAQrvWWQzY8grfUoXjnSqeRF4x7XlVfHrL5yMS5dxDPglAxTe4rQ/g7XwX0xsvgtMy7Zm9SHKE7fcqYBUQuZKjCs5oKyvDO+qYbrXg7iHbBLJdGGcyVmB2AbKMlTofO0s7CsySkBZ8WnaIMRzyhzMWtJv/KaQxIGvxxj97sDn6UEkJcOaDDETOIQgIvEVVXZevgwW0VvQKYaWPLQK0vWKmqf3bNasHmrIb5krYvzfZagRjMhw== root@bastion'
+additionalTrustBundle: |
+  -----BEGIN CERTIFICATE-----
+  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
+  Cdxu
+  -----END CERTIFICATE-----
+imageContentSources:
+- mirrors:
+  - bastion.ocp.bluepowertechnology.com:5000/ocp4/openshift4
+  source: quay.io/openshift-release-dev/ocp-release
+- mirrors:
+  - bastion.ocp.bluepowertechnology.com:5000/ocp4/openshift4
+  source: quay.io/openshift-release-dev/ocp-v4.0-art-dev

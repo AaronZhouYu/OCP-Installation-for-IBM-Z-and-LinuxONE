@@ -1,0 +1,17 @@
+$TTL 900
+
+@ IN SOA bastion.ocp.bluepowertechnology.com hostmaster.ocp.bluepowertechnology.com. (
+    2020011800 1D 1H 1W 3H
+  )      
+  IN NS bastion.ocp.bluepowertechnology.com.
+
+50 IN PTR bootstrap-0.ocp.bluepowertechnology.com.
+
+51 IN PTR master-0.ocp.bluepowertechnology.com.
+52 IN PTR master-1.ocp.bluepowertechnology.com.
+53 IN PTR master-2.ocp.bluepowertechnology.com.
+
+54 IN PTR worker-0.ocp.bluepowertechnology.com.
+55 IN PTR worker-1.ocp.bluepowertechnology.com.
+56 IN PTR worker-2.ocp.bluepowertechnology.com.
+57 IN PTR worker-3.ocp.bluepowertechnology.com.

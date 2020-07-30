@@ -1,0 +1,32 @@
+$TTL 900
+
+@                     IN SOA bastion.ocp.bluepowertechnology.com. hostmaster.ocp.bluepowertechnology.com. (
+                        2020011800 1D 1H 1W 3H
+                      )
+                      IN NS bastion.ocp.bluepowertechnology.com.
+
+bastion               IN A 202.59.162.18
+api                   IN A 202.59.162.18
+api-int               IN A 10.8.140.8
+apps                  IN A 202.59.162.18
+*.apps                IN A 202.59.162.18
+
+bootstrap-0           IN A 10.8.140.50
+
+master-0              IN A 10.8.140.51
+master-1              IN A 10.8.140.52
+master-2              IN A 10.8.140.53
+
+worker-0              IN A 10.8.140.54
+worker-1              IN A 10.8.140.55
+worker-2              IN A 10.8.140.56
+worker-3              IN A 10.8.140.57
+
+etcd-0                IN A 10.8.140.51
+etcd-1                IN A 10.8.140.52
+etcd-2                IN A 10.8.140.53
+
+_etcd-server-ssl._tcp IN SRV 0 10 2380 etcd-0.ocp.bluepowertechnology.com.
+                      IN SRV 0 10 2380 etcd-1.ocp.bluepowertechnology.com.
+                      IN SRV 0 10 2380 etcd-2.ocp.bluepowertechnology.com.
+  
