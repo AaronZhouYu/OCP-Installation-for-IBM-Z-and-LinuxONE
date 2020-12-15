@@ -46,7 +46,7 @@ read -p "Enter email address used to generate the certification: " email
 sed -i '/\"registry.redhat.io\"/i \    \"'$hostname':5000\": {\n\      \"auth\": \"'$token'\",\n\      \"email\": \"'$email'\"\n\    },' /root/pull-secret.json
 
 # Set the required environment variables
-export OCP_RELEASE=4.3.24-s390x
+export OCP_RELEASE=4.6.8-s390x
 export LOCAL_REGISTRY="$hostname:5000"
 export LOCAL_REPOSITORY='ocp4/openshift4'
 export PRODUCT_REPO='openshift-release-dev'
@@ -55,7 +55,7 @@ export RELEASE_NAME="ocp-release"
 
 # Mirror the repository, and Record the entire imageContentSources section from the output of the previous command.
 # The information about your mirrors is unique to your mirrored repository, and you must add the imageContentSources section to the install-config.yaml file during installation.
-oc adm -a ${LOCAL_SECRET_JSON} release mirror --from=quay.io/${PRODUCT_REPO}/${RELEASE_NAME}:${OCP_RELEASE} --to=${LOCAL_REGISTRY}/${LOCAL_REPOSITORY} --to-release-image=${LOCAL_REGISTRY}/${LOCAL_REPOSITORY}:${OCP_RELEASE}
+GODEBUG=x509ignoreCN=0 oc adm -a ${LOCAL_SECRET_JSON} release mirror --from=quay.io/${PRODUCT_REPO}/${RELEASE_NAME}:${OCP_RELEASE} --to=${LOCAL_REGISTRY}/${LOCAL_REPOSITORY} --to-release-image=${LOCAL_REGISTRY}/${LOCAL_REPOSITORY}:${OCP_RELEASE}
 
 # create the installation program that is based on the content that you mirrored, extract it and pin it to the release
-oc adm -a ${LOCAL_SECRET_JSON} release extract --command=openshift-install "${LOCAL_REGISTRY}/${LOCAL_REPOSITORY}:${OCP_RELEASE}"
+GODEBUG=x509ignoreCN=0 oc adm -a ${LOCAL_SECRET_JSON} release extract --command=openshift-install "${LOCAL_REGISTRY}/${LOCAL_REPOSITORY}:${OCP_RELEASE}"
